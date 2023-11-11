@@ -1,6 +1,4 @@
-import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.List;
 
 public class Materia {
     private String nombre;
@@ -56,37 +54,17 @@ public class Materia {
     public void eliminarMateriaAprobada(Materia materia) {
         this.materiasAprobadas.remove(materia);
     }
-}
-
-    public void setAlumno(Alumno alumno) {
-        this.alumno = alumno;
-    }
-
-    public Materia getMateria() {
-        return materia;
-    }
-
-    public void setMateria(Materia materia) {
-        this.materia = materia;
-    }
-
-    public LocalDate getFecha() {
-        return fecha;
-    }
-
-    public void setFecha(LocalDate fecha) {
-        this.fecha = fecha;
-    }
-
-    public boolean aprobada() {
-        return materia.puedeCursar(alumno);
-    }
-
-    public String aprobadaString() {
-        if (aprobada()) {
-            return "Aprobada";
+public boolean puedeCursar(Alumno alumno) {
+        if (this.getCorrelativas().isEmpty()) {
+            return true;
         } else {
-            return "Rechazada";
+            for (Materia correlativa : this.getCorrelativas()) {
+                if (  this.materiasAprobadas.contains(correlativa)) {
+                    return false;
+                }
+            }
+            return true;
         }
     }
+
 }
