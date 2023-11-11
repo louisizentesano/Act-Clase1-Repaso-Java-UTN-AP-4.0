@@ -35,16 +35,7 @@ public class Inscripcion {
         this.fecha = fecha;
     }
     
-
-    public boolean aprobada() {
-        return materia.puedeCursar(alumno);
-    }
-
-    public String aprobadaString() {
-        if (aprobada()) {
-            return "Aprobada";
-        } else {
-            return "Rechazada";
-        }
+public boolean aprobada() {
+        return materia != null && materia.puedeCursar(alumno);
     }
 }
